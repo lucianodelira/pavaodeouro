@@ -326,6 +326,153 @@ setInterval(atualizarComEfeito, 60000);
 
 </script>
 
-        
+   <script>
+
+// === CRIAR BOTÃO PARA ABRIR O JOGO ===
+let btnGame = document.createElement("button");
+btnGame.innerHTML = "🐍 Jogar Snake";
+btnGame.style.position = "fixed";
+btnGame.style.bottom = "60px";
+btnGame.style.left = "10px";
+btnGame.style.padding = "10px 15px";
+btnGame.style.background = "#ffd700";
+btnGame.style.border = "none";
+btnGame.style.borderRadius = "10px";
+btnGame.style.fontWeight = "bold";
+btnGame.style.cursor = "pointer";
+btnGame.style.zIndex = "9999";
+document.body.appendChild(btnGame);
+
+// === CRIAR MODAL DO JOGO ===
+let modal = document.createElement("div");
+modal.style.position = "fixed";
+modal.style.top = "0";
+modal.style.left = "0";
+modal.style.width = "100%";
+modal.style.height = "100%";
+modal.style.background = "rgba(0,0,0,0.95)";
+modal.style.display = "none";
+modal.style.justifyContent = "center";
+modal.style.alignItems = "center";
+modal.style.flexDirection = "column";
+modal.style.zIndex = "10000";
+
+modal.innerHTML = `
+<h2 style="color:#ffd700;">🐍 Snake Game</h2>
+<canvas id="snakeGame" width="300" height="300" style="background:#111;border:3px solid #ffd700;"></canvas>
+<p style="color:#fff;">Pontuação: <span id="score">0</span></p>
+<button onclick="fecharJogo()" style="padding:8px 15px;background:#ffd700;border:none;border-radius:8px;font-weight:bold;">Fechar</button>
+`;
+
+modal.style.display = "none";
+modal.style.display = "flex";
+modal.style.flexDirection = "column";
+modal.style.display = "none";
+
+document.body.appendChild(modal);
+
+btnGame.onclick = () => {
+modal.style.display = "flex";
+iniciarJogo();
+};
+
+function fecharJogo(){
+modal.style.display = "none";
+}
+
+// === LÓGICA DO JOGO ===
+let canvas, ctx;
+let box = 15;
+let snake;
+let direction;
+let food;
+let score;
+let game;
+
+function iniciarJogo(){
+
+canvas = document.getElementById("snakeGame");
+ctx = canvas.getContext("2d");
+
+snake = [];
+snake[0] = {x: 10 * box, y: 10 * box};
+
+direction = "RIGHT";
+score = 0;
+document.getElementById("score").innerText = score;
+
+food = {
+x: Math.floor(Math.random()*20) * box,
+y: Math.floor(Math.random()*20) * box
+};
+
+if(game) clearInterval(game);
+game = setInterval(desenhar, 120);
+}
+
+document.addEventListener("keydown", (event)=>{
+if(event.keyCode == 37 && direction != "RIGHT") direction = "LEFT";
+if(event.keyCode == 38 && direction != "DOWN") direction = "UP";
+if(event.keyCode == 39 && direction != "LEFT") direction = "RIGHT";
+if(event.keyCode == 40 && direction != "UP") direction = "DOWN";
+});
+
+function desenhar(){
+
+ctx.fillStyle = "#111";
+ctx.fillRect(0,0,300,300);
+
+for(let i=0;i<snake.length;i++){
+ctx.fillStyle = (i==0) ? "#ffd700" : "#fff";
+ctx.fillRect(snake[i].x, snake[i].y, box, box);
+}
+
+ctx.fillStyle = "red";
+ctx.fillRect(food.x, food.y, box, box);
+
+let snakeX = snake[0].x;
+let snakeY = snake[0].y;
+
+if(direction == "LEFT") snakeX -= box;
+if(direction == "UP") snakeY -= box;
+if(direction == "RIGHT") snakeX += box;
+if(direction == "DOWN") snakeY += box;
+
+if(snakeX == food.x && snakeY == food.y){
+score++;
+document.getElementById("score").innerText = score;
+food = {
+x: Math.floor(Math.random()*20) * box,
+y: Math.floor(Math.random()*20) * box
+};
+}else{
+snake.pop();
+}
+
+let newHead = {x: snakeX, y: snakeY};
+
+if(
+snakeX < 0 || snakeY < 0 ||
+snakeX >= 300 || snakeY >= 300 ||
+collision(newHead, snake)
+){
+clearInterval(game);
+alert("Game Over! Pontuação: " + score);
+modal.style.display = "none";
+}
+
+snake.unshift(newHead);
+}
+
+function collision(head,array){
+for(let i=0;i<array.length;i++){
+if(head.x == array[i].x && head.y == array[i].y){
+return true;
+}
+}
+return false;
+}
+
+</script>     
 </body>
 </html>
