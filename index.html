@@ -255,7 +255,76 @@ alertaAtualizacao();
 
 
 
+<script>
 
+// cria overlay de carregamento
+function criarLoading(){
+
+let overlay = document.createElement("div");
+overlay.id = "loadingOverlay";
+overlay.style.position = "fixed";
+overlay.style.top = "0";
+overlay.style.left = "0";
+overlay.style.width = "100%";
+overlay.style.height = "100%";
+overlay.style.background = "rgba(0,0,0,0.85)";
+overlay.style.display = "flex";
+overlay.style.flexDirection = "column";
+overlay.style.alignItems = "center";
+overlay.style.justifyContent = "center";
+overlay.style.color = "#ffd700";
+overlay.style.fontSize = "22px";
+overlay.style.fontWeight = "bold";
+overlay.style.zIndex = "9999";
+overlay.style.display = "none";
+
+overlay.innerHTML = `
+<div style="margin-bottom:20px;">🔄 Carregando novo resultado...</div>
+<div style="
+width:50px;
+height:50px;
+border:5px solid #ffd700;
+border-top:5px solid transparent;
+border-radius:50%;
+animation:giro 1s linear infinite;">
+</div>
+
+<style>
+@keyframes giro {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+</style>
+`;
+
+document.body.appendChild(overlay);
+
+}
+
+criarLoading();
+
+
+// função que ativa loading e atualiza resultado
+function atualizarComEfeito(){
+
+let overlay = document.getElementById("loadingOverlay");
+overlay.style.display = "flex";
+
+// espera 3 segundos simulando processamento
+setTimeout(()=>{
+
+atualizar(); // chama sua função já existente
+overlay.style.display = "none";
+
+}, 3000);
+
+}
+
+
+// ativa automaticamente a cada 60 segundos
+setInterval(atualizarComEfeito, 60000);
+
+</script>
 
         
 </body>
