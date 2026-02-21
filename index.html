@@ -177,6 +177,86 @@ document.getElementById("horaNoite").innerHTML = horario;
 atualizar();
 setInterval(atualizar, 30000);
 </script>
+<script>
 
+// contador de pessoas online (simulado)
+function pessoasOnline(){
+let numero = Math.floor(Math.random() * 150) + 50;
+let div = document.createElement("div");
+div.style.position="fixed";
+div.style.bottom="10px";
+div.style.right="10px";
+div.style.background="#ffd700";
+div.style.color="#000";
+div.style.padding="8px 12px";
+div.style.borderRadius="20px";
+div.style.fontWeight="bold";
+div.style.fontSize="13px";
+div.innerHTML="🔥 " + numero + " pessoas consultando agora";
+document.body.appendChild(div);
+
+setInterval(()=>{
+numero = Math.floor(Math.random() * 150) + 50;
+div.innerHTML="🔥 " + numero + " pessoas consultando agora";
+}, 10000);
+}
+
+pessoasOnline();
+
+
+// histórico dinâmico
+function criarHistorico(){
+let secao = document.createElement("div");
+secao.className="card";
+secao.innerHTML="<h2>Últimos Resultados</h2><div id='historico'></div>";
+document.querySelector("main").appendChild(secao);
+
+let historico = document.getElementById("historico");
+
+function adicionar(){
+let linha = document.createElement("p");
+linha.innerHTML = "Resultado anterior: " + gerarResultado();
+historico.prepend(linha);
+if(historico.children.length > 5){
+historico.removeChild(historico.lastChild);
+}
+}
+
+adicionar();
+setInterval(adicionar, 45000);
+}
+
+criarHistorico();
+
+
+// alerta de nova atualização
+function alertaAtualizacao(){
+let aviso = document.createElement("div");
+aviso.style.position="fixed";
+aviso.style.top="0";
+aviso.style.width="100%";
+aviso.style.background="#ff0000";
+aviso.style.color="#fff";
+aviso.style.padding="10px";
+aviso.style.fontWeight="bold";
+aviso.style.display="none";
+aviso.innerHTML="⚡ Nova atualização disponível!";
+document.body.appendChild(aviso);
+
+setInterval(()=>{
+aviso.style.display="block";
+setTimeout(()=>{aviso.style.display="none";}, 4000);
+},60000);
+}
+
+alertaAtualizacao();
+
+</script>
+
+
+
+
+
+        
 </body>
 </html>
