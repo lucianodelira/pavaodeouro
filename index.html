@@ -328,7 +328,9 @@ setInterval(atualizarComEfeito, 60000);
 
    <script>
 
-// === CRIAR BOTÃO PARA ABRIR O JOGO ===
+<script>
+
+// ================= BOTÃO =================
 let btnGame = document.createElement("button");
 btnGame.innerHTML = "🐍 Jogar Snake";
 btnGame.style.position = "fixed";
@@ -343,7 +345,7 @@ btnGame.style.cursor = "pointer";
 btnGame.style.zIndex = "9999";
 document.body.appendChild(btnGame);
 
-// === CRIAR MODAL DO JOGO ===
+// ================= MODAL =================
 let modal = document.createElement("div");
 modal.style.position = "fixed";
 modal.style.top = "0";
@@ -358,16 +360,15 @@ modal.style.flexDirection = "column";
 modal.style.zIndex = "10000";
 
 modal.innerHTML = `
-<h2 style="color:#ffd700;">🐍 Snake Game</h2>
-<canvas id="snakeGame" width="300" height="300" style="background:#111;border:3px solid #ffd700;"></canvas>
-<p style="color:#fff;">Pontuação: <span id="score">0</span></p>
-<button onclick="fecharJogo()" style="padding:8px 15px;background:#ffd700;border:none;border-radius:8px;font-weight:bold;">Fechar</button>
+<h2 style="color:#ffd700;font-size:26px;">🐍 Snake Premium</h2>
+<canvas id="snakeGame" width="400" height="400" 
+style="background:#111;border-radius:15px;box-shadow:0 0 30px #ffd700;"></canvas>
+<p style="color:#fff;font-size:18px;">Pontuação: <span id="score">0</span></p>
+<button onclick="fecharJogo()" 
+style="padding:8px 15px;background:#ffd700;border:none;border-radius:8px;font-weight:bold;">
+Fechar
+</button>
 `;
-
-modal.style.display = "none";
-modal.style.display = "flex";
-modal.style.flexDirection = "column";
-modal.style.display = "none";
 
 document.body.appendChild(modal);
 
@@ -378,11 +379,12 @@ iniciarJogo();
 
 function fecharJogo(){
 modal.style.display = "none";
+clearInterval(game);
 }
 
-// === LÓGICA DO JOGO ===
+// ================= JOGO =================
 let canvas, ctx;
-let box = 15;
+let box = 20;
 let snake;
 let direction;
 let food;
@@ -401,13 +403,19 @@ direction = "RIGHT";
 score = 0;
 document.getElementById("score").innerText = score;
 
-food = {
+food = gerarComida();
+
+if(game) clearInterval(game);
+
+// 🔥 MAIS LENTO AQUI (250ms)
+game = setInterval(desenhar, 250);
+}
+
+function gerarComida(){
+return {
 x: Math.floor(Math.random()*20) * box,
 y: Math.floor(Math.random()*20) * box
 };
-
-if(game) clearInterval(game);
-game = setInterval(desenhar, 120);
 }
 
 document.addEventListener("keydown", (event)=>{
@@ -419,16 +427,38 @@ if(event.keyCode == 40 && direction != "UP") direction = "DOWN";
 
 function desenhar(){
 
-ctx.fillStyle = "#111";
-ctx.fillRect(0,0,300,300);
+// Fundo gradiente
+let gradient = ctx.createLinearGradient(0,0,400,400);
+gradient.addColorStop(0,"#111");
+gradient.addColorStop(1,"#000");
+ctx.fillStyle = gradient;
+ctx.fillRect(0,0,400,400);
 
+// Cobra
 for(let i=0;i<snake.length;i++){
-ctx.fillStyle = (i==0) ? "#ffd700" : "#fff";
-ctx.fillRect(snake[i].x, snake[i].y, box, box);
+
+// efeito 3D leve
+ctx.shadowBlur = 10;
+ctx.shadowColor = "#ffd700";
+
+if(i==0){
+ctx.fillStyle = "#ffd700"; // cabeça dourada
+}else{
+ctx.fillStyle = "#ffffff";
 }
 
+ctx.fillRect(snake[i].x, snake[i].y, box, box);
+ctx.shadowBlur = 0;
+}
+
+// Comida animada
+ctx.beginPath();
+ctx.arc(food.x + box/2, food.y + box/2, box/2, 0, Math.PI*2);
 ctx.fillStyle = "red";
-ctx.fillRect(food.x, food.y, box, box);
+ctx.shadowBlur = 15;
+ctx.shadowColor = "red";
+ctx.fill();
+ctx.shadowBlur = 0;
 
 let snakeX = snake[0].x;
 let snakeY = snake[0].y;
@@ -441,21 +471,17 @@ if(direction == "DOWN") snakeY += box;
 if(snakeX == food.x && snakeY == food.y){
 score++;
 document.getElementById("score").innerText = score;
-food = {
-x: Math.floor(Math.random()*20) * box,
-y: Math.floor(Math.random()*20) * box
-};
+food = gerarComida();
 }else{
 snake.pop();
 }
 
 let newHead = {x: snakeX, y: snakeY};
 
-if(
-snakeX < 0 || snakeY < 0 ||
-snakeX >= 300 || snakeY >= 300 ||
-collision(newHead, snake)
-){
+// colisão parede
+if(snakeX < 0 || snakeY < 0 ||
+snakeX >= 400 || snakeY >= 400 ||
+collision(newHead, snake)){
 clearInterval(game);
 alert("Game Over! Pontuação: " + score);
 modal.style.display = "none";
@@ -473,6 +499,6 @@ return true;
 return false;
 }
 
-</script>     
+</script>   
 </body>
 </html>
