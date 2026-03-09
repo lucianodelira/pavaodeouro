@@ -2,27 +2,13 @@
 <html lang="pt-BR">
 <head>
 
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5066020163837493"
-     crossorigin="anonymous"></script>
-<meta name="google-adsense-account" content="ca-pub-5066020163837493">
-
-        
-<!-- MULTITAG MONETAG -->
-<script src="https://quge5.com/88/tag.min.js"
-        data-zone="213149"
-        async
-        data-cfasync="false"></script>
-
-<meta name="monetag" content="37f0547a13ff9a1c142a669f61b9f6fe">
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Resultado Banca Pavão de Ouro Hoje Ao Vivo</title>
 
 <meta name="description" content="Confira o resultado da Banca Pavão de Ouro hoje atualizado ao vivo. Resultados da manhã, tarde e noite com atualização automática.">
-<meta name="keywords" content="banca pavão de ouro hoje, resultado pavão de ouro, pavão de ouro ao vivo, resultado atualizado">
+<meta name="keywords" content="banca pavão de ouro hoje, resultado pavão de ouro, pavão de ouro ao vivo">
 <meta name="author" content="Pavão de Ouro">
 <link rel="canonical" href="https://www.pavaodeouro.net/">
 
@@ -33,7 +19,14 @@
 
 <meta name="theme-color" content="#000000">
 
+<!-- VERIFICAÇÃO ADSENSE -->
+<meta name="google-adsense-account" content="ca-pub-5066020163837493">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5066020163837493"
+crossorigin="anonymous"></script>
+
 <style>
+
 body{
 margin:0;
 font-family:Arial, sans-serif;
@@ -47,7 +40,6 @@ background:linear-gradient(45deg,#d4af37,#000);
 padding:20px;
 font-size:26px;
 font-weight:bold;
-letter-spacing:1px;
 }
 
 main{
@@ -69,21 +61,6 @@ font-size:22px;
 color:#ffd700;
 font-weight:bold;
 margin-top:10px;
-}
-
-button{
-background:#ffd700;
-color:#000;
-padding:10px 20px;
-border:none;
-border-radius:8px;
-font-weight:bold;
-cursor:pointer;
-margin-top:10px;
-}
-
-button:hover{
-background:#ffffff;
 }
 
 .horario{
@@ -108,6 +85,7 @@ border-radius:20px;
 font-size:12px;
 margin-bottom:10px;
 }
+
 </style>
 
 </head>
@@ -143,7 +121,23 @@ margin-bottom:10px;
 
 <div class="card">
 <h2>Sobre a Banca Pavão de Ouro</h2>
-<p>A Banca Pavão de Ouro realiza extrações diárias nos períodos da manhã, tarde e noite. Esta página atualiza automaticamente os resultados para manter as informações sempre recentes.</p>
+<p>A Banca Pavão de Ouro realiza extrações diárias nos períodos da manhã, tarde e noite. Esta página atualiza automaticamente os resultados.</p>
+</div>
+
+<!-- EXEMPLO DE ANÚNCIO ADSENSE -->
+<div class="card">
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5066020163837493"
+     data-ad-slot="1234567890"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 </div>
 
 </main>
@@ -153,22 +147,29 @@ margin-bottom:10px;
 </footer>
 
 <script>
+
 function gerarNumero(){
 return Math.floor(Math.random()*10000).toString().padStart(4,'0');
 }
 
 function gerarResultado(){
+
 let lista=[];
+
 for(let i=0;i<5;i++){
 lista.push(gerarNumero());
 }
+
 return lista.join(" - ");
 }
 
 function atualizar(){
+
 let agora = new Date();
+
 let hora = agora.getHours().toString().padStart(2,'0');
 let minuto = agora.getMinutes().toString().padStart(2,'0');
+
 let horario = "Atualizado às " + hora + ":" + minuto;
 
 document.getElementById("manha").innerHTML = gerarResultado();
@@ -178,332 +179,14 @@ document.getElementById("noite").innerHTML = gerarResultado();
 document.getElementById("horaManha").innerHTML = horario;
 document.getElementById("horaTarde").innerHTML = horario;
 document.getElementById("horaNoite").innerHTML = horario;
+
 }
 
 atualizar();
-setInterval(atualizar, 30000);
-</script>
-<script>
 
-// contador de pessoas online (simulado)
-function pessoasOnline(){
-let numero = Math.floor(Math.random() * 150) + 50;
-let div = document.createElement("div");
-div.style.position="fixed";
-div.style.bottom="10px";
-div.style.right="10px";
-div.style.background="#ffd700";
-div.style.color="#000";
-div.style.padding="8px 12px";
-div.style.borderRadius="20px";
-div.style.fontWeight="bold";
-div.style.fontSize="13px";
-div.innerHTML="🔥 " + numero + " pessoas consultando agora";
-document.body.appendChild(div);
-
-setInterval(()=>{
-numero = Math.floor(Math.random() * 150) + 50;
-div.innerHTML="🔥 " + numero + " pessoas consultando agora";
-}, 10000);
-}
-
-pessoasOnline();
-
-
-// histórico dinâmico
-function criarHistorico(){
-let secao = document.createElement("div");
-secao.className="card";
-secao.innerHTML="<h2>Últimos Resultados</h2><div id='historico'></div>";
-document.querySelector("main").appendChild(secao);
-
-let historico = document.getElementById("historico");
-
-function adicionar(){
-let linha = document.createElement("p");
-linha.innerHTML = "Resultado anterior: " + gerarResultado();
-historico.prepend(linha);
-if(historico.children.length > 5){
-historico.removeChild(historico.lastChild);
-}
-}
-
-adicionar();
-setInterval(adicionar, 45000);
-}
-
-criarHistorico();
-
-
-// alerta de nova atualização
-function alertaAtualizacao(){
-let aviso = document.createElement("div");
-aviso.style.position="fixed";
-aviso.style.top="0";
-aviso.style.width="100%";
-aviso.style.background="#ff0000";
-aviso.style.color="#fff";
-aviso.style.padding="10px";
-aviso.style.fontWeight="bold";
-aviso.style.display="none";
-aviso.innerHTML="⚡ Nova atualização disponível!";
-document.body.appendChild(aviso);
-
-setInterval(()=>{
-aviso.style.display="block";
-setTimeout(()=>{aviso.style.display="none";}, 4000);
-},60000);
-}
-
-alertaAtualizacao();
+setInterval(atualizar,30000);
 
 </script>
 
-
-
-<script>
-
-// cria overlay de carregamento
-function criarLoading(){
-
-let overlay = document.createElement("div");
-overlay.id = "loadingOverlay";
-overlay.style.position = "fixed";
-overlay.style.top = "0";
-overlay.style.left = "0";
-overlay.style.width = "100%";
-overlay.style.height = "100%";
-overlay.style.background = "rgba(0,0,0,0.85)";
-overlay.style.display = "flex";
-overlay.style.flexDirection = "column";
-overlay.style.alignItems = "center";
-overlay.style.justifyContent = "center";
-overlay.style.color = "#ffd700";
-overlay.style.fontSize = "22px";
-overlay.style.fontWeight = "bold";
-overlay.style.zIndex = "9999";
-overlay.style.display = "none";
-
-overlay.innerHTML = `
-<div style="margin-bottom:20px;">🔄 Carregando novo resultado...</div>
-<div style="
-width:50px;
-height:50px;
-border:5px solid #ffd700;
-border-top:5px solid transparent;
-border-radius:50%;
-animation:giro 1s linear infinite;">
-</div>
-
-<style>
-@keyframes giro {
-0% { transform: rotate(0deg); }
-100% { transform: rotate(360deg); }
-}
-</style>
-`;
-
-document.body.appendChild(overlay);
-
-}
-
-criarLoading();
-
-
-// função que ativa loading e atualiza resultado
-function atualizarComEfeito(){
-
-let overlay = document.getElementById("loadingOverlay");
-overlay.style.display = "flex";
-
-// espera 3 segundos simulando processamento
-setTimeout(()=>{
-
-atualizar(); // chama sua função já existente
-overlay.style.display = "none";
-
-}, 3000);
-
-}
-
-
-// ativa automaticamente a cada 60 segundos
-setInterval(atualizarComEfeito, 60000);
-
-</script>
-
-   <script>
-
-
-// ================= BOTÃO =================
-let btnGame = document.createElement("button");
-btnGame.innerHTML = "🐍 Jogar Snake";
-btnGame.style.position = "fixed";
-btnGame.style.bottom = "60px";
-btnGame.style.left = "10px";
-btnGame.style.padding = "10px 15px";
-btnGame.style.background = "#ffd700";
-btnGame.style.border = "none";
-btnGame.style.borderRadius = "10px";
-btnGame.style.fontWeight = "bold";
-btnGame.style.cursor = "pointer";
-btnGame.style.zIndex = "9999";
-document.body.appendChild(btnGame);
-
-// ================= MODAL =================
-let modal = document.createElement("div");
-modal.style.position = "fixed";
-modal.style.top = "0";
-modal.style.left = "0";
-modal.style.width = "100%";
-modal.style.height = "100%";
-modal.style.background = "rgba(0,0,0,0.95)";
-modal.style.display = "none";
-modal.style.justifyContent = "center";
-modal.style.alignItems = "center";
-modal.style.flexDirection = "column";
-modal.style.zIndex = "10000";
-
-modal.innerHTML = `
-<h2 style="color:#ffd700;font-size:26px;">🐍 Snake Premium</h2>
-<canvas id="snakeGame" width="400" height="400" 
-style="background:#111;border-radius:15px;box-shadow:0 0 30px #ffd700;"></canvas>
-<p style="color:#fff;font-size:18px;">Pontuação: <span id="score">0</span></p>
-<button onclick="fecharJogo()" 
-style="padding:8px 15px;background:#ffd700;border:none;border-radius:8px;font-weight:bold;">
-Fechar
-</button>
-`;
-
-document.body.appendChild(modal);
-
-btnGame.onclick = () => {
-modal.style.display = "flex";
-iniciarJogo();
-};
-
-function fecharJogo(){
-modal.style.display = "none";
-clearInterval(game);
-}
-
-// ================= JOGO =================
-let canvas, ctx;
-let box = 20;
-let snake;
-let direction;
-let food;
-let score;
-let game;
-
-function iniciarJogo(){
-
-canvas = document.getElementById("snakeGame");
-ctx = canvas.getContext("2d");
-
-snake = [];
-snake[0] = {x: 10 * box, y: 10 * box};
-
-direction = "RIGHT";
-score = 0;
-document.getElementById("score").innerText = score;
-
-food = gerarComida();
-
-if(game) clearInterval(game);
-
-// 🔥 MAIS LENTO AQUI (250ms)
-game = setInterval(desenhar, 250);
-}
-
-function gerarComida(){
-return {
-x: Math.floor(Math.random()*20) * box,
-y: Math.floor(Math.random()*20) * box
-};
-}
-
-document.addEventListener("keydown", (event)=>{
-if(event.keyCode == 37 && direction != "RIGHT") direction = "LEFT";
-if(event.keyCode == 38 && direction != "DOWN") direction = "UP";
-if(event.keyCode == 39 && direction != "LEFT") direction = "RIGHT";
-if(event.keyCode == 40 && direction != "UP") direction = "DOWN";
-});
-
-function desenhar(){
-
-// Fundo gradiente
-let gradient = ctx.createLinearGradient(0,0,400,400);
-gradient.addColorStop(0,"#111");
-gradient.addColorStop(1,"#000");
-ctx.fillStyle = gradient;
-ctx.fillRect(0,0,400,400);
-
-// Cobra
-for(let i=0;i<snake.length;i++){
-
-// efeito 3D leve
-ctx.shadowBlur = 10;
-ctx.shadowColor = "#ffd700";
-
-if(i==0){
-ctx.fillStyle = "#ffd700"; // cabeça dourada
-}else{
-ctx.fillStyle = "#ffffff";
-}
-
-ctx.fillRect(snake[i].x, snake[i].y, box, box);
-ctx.shadowBlur = 0;
-}
-
-// Comida animada
-ctx.beginPath();
-ctx.arc(food.x + box/2, food.y + box/2, box/2, 0, Math.PI*2);
-ctx.fillStyle = "red";
-ctx.shadowBlur = 15;
-ctx.shadowColor = "red";
-ctx.fill();
-ctx.shadowBlur = 0;
-
-let snakeX = snake[0].x;
-let snakeY = snake[0].y;
-
-if(direction == "LEFT") snakeX -= box;
-if(direction == "UP") snakeY -= box;
-if(direction == "RIGHT") snakeX += box;
-if(direction == "DOWN") snakeY += box;
-
-if(snakeX == food.x && snakeY == food.y){
-score++;
-document.getElementById("score").innerText = score;
-food = gerarComida();
-}else{
-snake.pop();
-}
-
-let newHead = {x: snakeX, y: snakeY};
-
-// colisão parede
-if(snakeX < 0 || snakeY < 0 ||
-snakeX >= 400 || snakeY >= 400 ||
-collision(newHead, snake)){
-clearInterval(game);
-alert("Game Over! Pontuação: " + score);
-modal.style.display = "none";
-}
-
-snake.unshift(newHead);
-}
-
-function collision(head,array){
-for(let i=0;i<array.length;i++){
-if(head.x == array[i].x && head.y == array[i].y){
-return true;
-}
-}
-return false;
-}
-
-</script>
 </body>
 </html>
