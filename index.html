@@ -19,7 +19,6 @@
 
 <meta name="theme-color" content="#000000">
 
-<!-- VERIFICAÇÃO ADSENSE -->
 <meta name="google-adsense-account" content="ca-pub-5066020163837493">
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5066020163837493"
@@ -86,6 +85,61 @@ font-size:12px;
 margin-bottom:10px;
 }
 
+/* BOTÕES */
+.btn{
+display:block;
+width:100%;
+max-width:400px;
+margin:10px auto;
+padding:18px;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:12px;
+background:linear-gradient(45deg,#ffd700,#ff9900);
+color:#000;
+cursor:pointer;
+box-shadow:0 0 15px rgba(255,215,0,0.6);
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 25px rgba(255,215,0,1);
+}
+
+/* IFRAME FULLSCREEN */
+#iframeContainer{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+display:none;
+z-index:9999;
+}
+
+#iframeContainer iframe{
+width:100%;
+height:100%;
+border:none;
+}
+
+#fechar{
+position:absolute;
+top:10px;
+right:10px;
+background:red;
+color:#fff;
+border:none;
+padding:10px 15px;
+font-size:16px;
+border-radius:8px;
+cursor:pointer;
+z-index:10000;
+}
+
 </style>
 
 </head>
@@ -124,9 +178,20 @@ margin-bottom:10px;
 <p>A Banca Pavão de Ouro realiza extrações diárias nos períodos da manhã, tarde e noite. Esta página atualiza automaticamente os resultados.</p>
 </div>
 
-<!-- EXEMPLO DE ANÚNCIO ADSENSE -->
+<!-- BOTÕES -->
 <div class="card">
+<h2>🎮 Jogar Agora</h2>
 
+<button class="btn" onclick="abrirIframe()">🎰 Jogar Cassino</button>
+<button class="btn" onclick="abrirIframe()">🎯 Jogar Loterias</button>
+<button class="btn" onclick="abrirIframe()">🎱 Jogar Bingo</button>
+<button class="btn" onclick="abrirIframe()">🪙 Jogar Raspadinha</button>
+<button class="btn" onclick="abrirIframe()">⚽ Jogar Futebol</button>
+
+</div>
+
+<!-- ANÚNCIO -->
+<div class="card">
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-5066020163837493"
@@ -137,7 +202,6 @@ margin-bottom:10px;
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-
 </div>
 
 </main>
@@ -145,6 +209,12 @@ margin-bottom:10px;
 <footer>
 © 2026 www.pavaodeouro.net – Todos os direitos reservados.
 </footer>
+
+<!-- IFRAME -->
+<div id="iframeContainer">
+<iframe id="meuIframe"></iframe>
+<button id="fechar" onclick="fecharIframe()">✖ Fechar</button>
+</div>
 
 <script>
 
@@ -183,8 +253,18 @@ document.getElementById("horaNoite").innerHTML = horario;
 }
 
 atualizar();
-
 setInterval(atualizar,30000);
+
+/* IFRAME FUNÇÕES */
+function abrirIframe(){
+document.getElementById("iframeContainer").style.display = "block";
+document.getElementById("meuIframe").src = "https://app.bancavaidarboa.club/pr/d032gM1o";
+}
+
+function fecharIframe(){
+document.getElementById("iframeContainer").style.display = "none";
+document.getElementById("meuIframe").src = "";
+}
 
 </script>
 
