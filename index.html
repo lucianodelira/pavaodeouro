@@ -1,23 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
 <script>(function(s){s.dataset.zone='10791605',s.src='https://izcle.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Resultado Banca Pavão de Ouro Hoje Ao Vivo</title>
-
-<meta name="description" content="Confira o resultado da Banca Pavão de Ouro hoje atualizado ao vivo. Resultados da manhã, tarde e noite com atualização automática.">
-<meta name="keywords" content="banca pavão de ouro hoje, resultado pavão de ouro, pavão de ouro ao vivo">
-<meta name="author" content="Pavão de Ouro">
-<link rel="canonical" href="https://www.pavaodeouro.net/">
-
-<meta property="og:title" content="Resultado Pavão de Ouro Hoje Atualizado">
-<meta property="og:description" content="Resultados atualizados da Banca Pavão de Ouro. Confira agora.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.pavaodeouro.net/">
-
-<meta name="theme-color" content="#000000">
 
 <meta name="google-adsense-account" content="ca-pub-5066020163837493">
 
@@ -28,9 +18,9 @@ crossorigin="anonymous"></script>
 
 body{
 margin:0;
-font-family:Arial, sans-serif;
+font-family:Arial;
 background:#0f0f0f;
-color:#ffffff;
+color:#fff;
 text-align:center;
 }
 
@@ -59,33 +49,20 @@ box-shadow:0 0 25px rgba(255,215,0,0.3);
 font-size:22px;
 color:#ffd700;
 font-weight:bold;
-margin-top:10px;
 }
 
 .horario{
 font-size:14px;
 opacity:0.7;
-margin-top:5px;
-}
-
-footer{
-background:#000;
-padding:20px;
-margin-top:40px;
-font-size:14px;
-}
-
-.badge{
-display:inline-block;
-background:#ffd700;
-color:#000;
-padding:5px 10px;
-border-radius:20px;
-font-size:12px;
-margin-bottom:10px;
 }
 
 /* BOTÕES */
+@keyframes pulse {
+0% {transform: scale(1); box-shadow:0 0 10px #ffd700;}
+50% {transform: scale(1.08); box-shadow:0 0 30px #ffd700;}
+100% {transform: scale(1);}
+}
+
 .btn{
 display:block;
 width:100%;
@@ -99,16 +76,10 @@ border-radius:12px;
 background:linear-gradient(45deg,#ffd700,#ff9900);
 color:#000;
 cursor:pointer;
-box-shadow:0 0 15px rgba(255,215,0,0.6);
-transition:0.3s;
+animation:pulse 1.5s infinite;
 }
 
-.btn:hover{
-transform:scale(1.05);
-box-shadow:0 0 25px rgba(255,215,0,1);
-}
-
-/* IFRAME FULLSCREEN */
+/* IFRAME */
 #iframeContainer{
 position:fixed;
 top:0;
@@ -133,113 +104,123 @@ right:10px;
 background:red;
 color:#fff;
 border:none;
-padding:10px 15px;
-font-size:16px;
-border-radius:8px;
+padding:10px;
 cursor:pointer;
-z-index:10000;
+}
+
+/* POPUP */
+#popupOverlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+display:none;
+z-index:99999;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+}
+
+#popupOverlay button{
+margin-top:15px;
+padding:15px;
+font-size:18px;
+background:#ffd700;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* CONTADOR */
+#contador{
+font-size:18px;
+color:#00ffcc;
+margin-top:10px;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<header>
-🔥 BANCA PAVÃO DE OURO 🔥
-</header>
+<header>🔥 BANCA PAVÃO DE OURO 🔥</header>
 
 <main>
 
 <h1>Resultado da Banca Pavão de Ouro Hoje</h1>
 
 <div class="card">
-<div class="badge">Atualização Automática</div>
-<h2>Extração da Manhã</h2>
+<h2>Manhã</h2>
 <div id="manha" class="resultado"></div>
 <div id="horaManha" class="horario"></div>
 </div>
 
 <div class="card">
-<h2>Extração da Tarde</h2>
+<h2>Tarde</h2>
 <div id="tarde" class="resultado"></div>
 <div id="horaTarde" class="horario"></div>
 </div>
 
 <div class="card">
-<h2>Extração da Noite</h2>
+<h2>Noite</h2>
 <div id="noite" class="resultado"></div>
 <div id="horaNoite" class="horario"></div>
-</div>
-
-<div class="card">
-<h2>Sobre a Banca Pavão de Ouro</h2>
-<p>A Banca Pavão de Ouro realiza extrações diárias nos períodos da manhã, tarde e noite. Esta página atualiza automaticamente os resultados.</p>
 </div>
 
 <!-- BOTÕES -->
 <div class="card">
 <h2>🎮 Jogar Agora</h2>
 
-<button class="btn" onclick="abrirIframe()">🎰 Jogar Cassino</button>
-<button class="btn" onclick="abrirIframe()">🎯 Jogar Loterias</button>
-<button class="btn" onclick="abrirIframe()">🎱 Jogar Bingo</button>
-<button class="btn" onclick="abrirIframe()">🪙 Jogar Raspadinha</button>
-<button class="btn" onclick="abrirIframe()">⚽ Jogar Futebol</button>
+<button class="btn" onclick="abrirIframe()">🎰 Cassino</button>
+<button class="btn" onclick="abrirIframe()">🎯 Loterias</button>
+<button class="btn" onclick="abrirIframe()">🎱 Bingo</button>
+<button class="btn" onclick="abrirIframe()">🪙 Raspadinha</button>
+<button class="btn" onclick="abrirIframe()">⚽ Futebol</button>
 
-</div>
+<div id="contador"></div>
 
-<!-- ANÚNCIO -->
-<div class="card">
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-5066020163837493"
-     data-ad-slot="1234567890"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </div>
 
 </main>
 
-<footer>
-© 2026 www.pavaodeouro.net – Todos os direitos reservados.
-</footer>
+<footer>© 2026</footer>
 
 <!-- IFRAME -->
 <div id="iframeContainer">
 <iframe id="meuIframe"></iframe>
-<button id="fechar" onclick="fecharIframe()">✖ Fechar</button>
+<button id="fechar" onclick="fecharIframe()">✖</button>
+</div>
+
+<!-- POPUP -->
+<div id="popupOverlay">
+<h2>🔥 Entre Agora 🔥</h2>
+<p>Comece a jogar e tente a sorte!</p>
+
+<button onclick="abrirIframe()">🎰 ENTRAR</button>
+<button onclick="fecharPopup()">❌ Fechar</button>
 </div>
 
 <script>
 
+/* RESULTADOS (mantido igual) */
 function gerarNumero(){
 return Math.floor(Math.random()*10000).toString().padStart(4,'0');
 }
 
 function gerarResultado(){
-
 let lista=[];
-
 for(let i=0;i<5;i++){
 lista.push(gerarNumero());
 }
-
 return lista.join(" - ");
 }
 
 function atualizar(){
-
 let agora = new Date();
-
 let hora = agora.getHours().toString().padStart(2,'0');
 let minuto = agora.getMinutes().toString().padStart(2,'0');
-
 let horario = "Atualizado às " + hora + ":" + minuto;
 
 document.getElementById("manha").innerHTML = gerarResultado();
@@ -249,13 +230,12 @@ document.getElementById("noite").innerHTML = gerarResultado();
 document.getElementById("horaManha").innerHTML = horario;
 document.getElementById("horaTarde").innerHTML = horario;
 document.getElementById("horaNoite").innerHTML = horario;
-
 }
 
 atualizar();
 setInterval(atualizar,30000);
 
-/* IFRAME FUNÇÕES */
+/* IFRAME */
 function abrirIframe(){
 document.getElementById("iframeContainer").style.display = "block";
 document.getElementById("meuIframe").src = "https://app.bancavaidarboa.club/pr/d032gM1o";
@@ -265,6 +245,25 @@ function fecharIframe(){
 document.getElementById("iframeContainer").style.display = "none";
 document.getElementById("meuIframe").src = "";
 }
+
+/* POPUP AUTOMÁTICO */
+setTimeout(function(){
+document.getElementById("popupOverlay").style.display = "flex";
+},5000);
+
+function fecharPopup(){
+document.getElementById("popupOverlay").style.display = "none";
+}
+
+/* CONTADOR DINÂMICO */
+function atualizarContador(){
+let numero = Math.floor(Math.random()*50)+120;
+document.getElementById("contador").innerHTML =
+"👥 " + numero + " pessoas jogando agora";
+}
+
+setInterval(atualizarContador,3000);
+atualizarContador();
 
 </script>
 
